@@ -9,25 +9,27 @@
  * License: GPLv3
  */
 
- namespace OptionsForcer;
+namespace OptionsForcer;
 
 if(!function_exists('\add_action')) die();
 
- class Plugin {
+class Plugin {
 
-   public static function init(){
-     global $wp_options;
-     if ( isset($wp_options) && is_array($wp_options) ){
-       foreach($wp_options as $option => $value){
-         self::overrideOption($option, $value);
-       }
-     }
-   }
+  public static function init(){
+    global $wp_options;
+    if ( isset($wp_options) && is_array($wp_options) ){
+      foreach($wp_options as $option => $value){
+        self::overrideOption($option, $value);
+      }
+    }
+  }
 
-   public static function overrideOption($name, $value){
-     add_filter("option_${name}", function() use($value) {
-       return $value;
-     });
-   }
- }
- add_action('init', ['\OptionsForcer\Plugin', 'init']);
+  public static function overrideOption($name, $value){
+    add_filter("option_${name}", function() use($value) {
+      return $value;
+    });
+  }
+
+}
+
+add_action('init', ['\OptionsForcer\Plugin', 'init']);
