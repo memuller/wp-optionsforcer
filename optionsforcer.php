@@ -10,6 +10,9 @@
  */
 
  namespace OptionsForcer;
+
+if(!function_exists('\add_action')) die();
+
  class Plugin {
 
    public static function init(){
