@@ -60,7 +60,7 @@ class Plugin {
    * @param void $value The value which will override the option.
    */
   public static function overrideOption($name, $value){
-    add_filter("option_${name}", function() use($value) {
+    add_filter("pre_option_${name}", function() use($value) {
       return $value;
     });
   }
